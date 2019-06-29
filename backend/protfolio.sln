@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "protfolio", "protfolio\protfolio.csproj", "{4F6F195A-643C-4F93-B265-6B911E37BFD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "protfolio", "protfolio\protfolio.csproj", "{4F6F195A-643C-4F93-B265-6B911E37BFD7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Protfoliotests", "Protfoliotests\Protfoliotests.csproj", "{A50840AE-C7F8-4206-A21A-E00E76D6AE5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4F6F195A-643C-4F93-B265-6B911E37BFD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F6F195A-643C-4F93-B265-6B911E37BFD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F6F195A-643C-4F93-B265-6B911E37BFD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A50840AE-C7F8-4206-A21A-E00E76D6AE5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A50840AE-C7F8-4206-A21A-E00E76D6AE5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A50840AE-C7F8-4206-A21A-E00E76D6AE5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A50840AE-C7F8-4206-A21A-E00E76D6AE5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

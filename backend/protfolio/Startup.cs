@@ -6,10 +6,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using protfolio.Data;
+using protfolio.Services;
+using protfolio.Data.Repos;
+
 
 namespace protfolio
 {
@@ -26,6 +31,18 @@ namespace protfolio
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<ApplicationContext>();
+
+            services.AddTransient<IUserContext, ApplicationContext>();
+            services.AddTransient<ISpheresContext, ApplicationContext>();
+            services.AddTransient<IProjectContext, ApplicationContext>();
+            services.AddTransient<AuthenticateService>();
+            services.AddTransient<ProjectRepository>();
+            services.AddTransient<UserRepository>();
+            services.AddTransient<SpheresRepository>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,7 +59,15 @@ namespace protfolio
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseStaticFiles();
+            app.UseAuthentication();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Account}/{action=Login}/{id?}");
+            });
         }
     }
 }

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!--
+* CoreUI - Free Bootstrap Admin Template
+* @version v2.1.14
+* @link https://coreui.io
+* Copyright (c) 2018 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://coreui.io/license)
+-->
+
+<html lang="en">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+    <title>CoreUI Free Bootstrap Admin Template</title>
+    <!-- Icons-->
+    <link href="node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
+    <link href="node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+    <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <!-- Main styles for this application-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      // Shared ID
+      gtag('config', 'UA-118965717-3');
+      // Bootstrap ID
+      gtag('config', 'UA-118965717-5');
+    </script>
+  </head>
+  <body class="app header-fixed ">
+    <header class="app-header navbar">
+      <ul class="nav navbar-nav d-md-down-none">
+        <li class="nav-item px-3">
+          <a class="nav-link" href="#">Пользователи</a>
+        </li>
+        <li class="nav-item px-3">
+          <a class="nav-link" href="#">Проекты</a>
+        </li>
+      </ul>
+ 
+    </header>
+    <div class="app-body">
+      <main class="main">
+
+        <div class="container-fluid">
+          <div class="animated fadeIn"></div>
+        
+        
+        <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <strong>Создание/редактирование проекта</strong></div>
+                  <div class="card-body">
+        
+                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                   
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="text-input">Название</label>
+                        <div class="col-md-9">
+                          <input class="form-control" id="name" type="text" name="text-input">                        
+                        </div>
+                      </div>                      
+                      
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="textarea-input">О проекте</label>
+                        <div class="col-md-9">
+                          <textarea class="form-control" id="textarea-input" name="textarea-input" rows="9" placeholder="Описание проекта"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                      <div class="col-md-9">
+                        <strong>Команда:</strong>
+                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        Добавить участника
+                      </button>
+                      </div>
+                     </div>
+                     
+                     <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="text-input">Ссылки</label>
+                        <div class="col-md-5">
+                          <input class="form-control" id="name" type="text" name="text-input" placeholder="Ссылка">                        
+                        </div>
+                        <div class="col-md-4">
+                          <input class="form-control" id="name" type="text" name="text-input" placeholder="Название">                        
+                        </div>
+                      </div>
+                 
+                 
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="text-input">Теги</label>
+                        <div class="col-md-9">
+                          <input class="form-control" id="name" type="text" name="text-input">                        
+                        </div>
+                      </div> 
+                      
+                     <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="text-input">Сферы</label>
+                        <div class="col-md-9">
+                          <input class="form-control" id="name" type="text" name="text-input">                        
+                        </div>
+                      </div> 
+                   
+                    <div class="form-group row">
+                    <div class="col-md-9">
+                     <strong>Нужны в команду</strong>
+                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                        Добавить соискателя
+                      </button>
+                      </div>
+                    </div>
+   
+     
+                    </form>
+       </div>
+       <div class="card-footer">
+                    <button class="btn btn-sm btn-primary" type="submit">
+                      <i class="fa fa-dot-circle-o"></i> Сохранить</button>
+                  </div>
+       
+       </div></div></div> 
+        </div> 
+      </main>
+     </div>
+    <footer class="app-footer">
+      <div>
+        <a href="#">DolboCorp</a>
+        <span>&copy; 2019</span>
+      </div>
+    </footer>
+    <!-- Modal -->
+    
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Добавить участника</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <form class="form-horizontal" action="" method="post" enctype="multipart/form-data"> 
+            <div class="form-group row">
+            <div class="col-md-10" style="padding-left:25px;">
+              <label class="col-form-label" for="text-input">Имя</label>                               
+                <input class="form-control" id="name" type="text" name="text-input">                        
+              </div>
+            </div> 
+            <div class="form-group row">
+            <div class="col-md-10" style="padding-left:25px;">
+              <label class="col-form-label" for="text-input">Роль</label>                               
+                <input class="form-control" id="name" type="text" name="text-input">                        
+               </div>
+            </div>
+            <div class="col-md-12">
+            <label class="col-form-label">Обязанности</label>
+              <textarea class="form-control" id="textarea-input" name="textarea-input" rows="10" placeholder=""></textarea>
+            </div> 
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Добавить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+      <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Добавить соискателя</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+               <form class="form-horizontal" action="" method="post" enctype="multipart/form-data"> 
+                <div class="form-group row">
+                <div class="col-md-10" style="padding-left:25px;">
+                  <label class="col-form-label" for="text-input">Роль</label>                               
+                    <input class="form-control" id="name" type="text" name="text-input">                        
+                  </div>
+                </div> 
+                <div class="form-group row">
+                <div class="col-md-10" style="padding-left:25px;">
+                  <label class="col-form-label" for="text-input">Специализация</label>                               
+                    <input class="form-control" id="name" type="text" name="text-input">                        
+                   </div>
+                </div>
+                <div class="col-md-12">
+                <label class="col-form-label">Обязанности</label>
+                  <textarea class="form-control" id="textarea-input" name="textarea-input" rows="10" placeholder=""></textarea>
+                </div> 
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Добавить</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+    <!-- CoreUI and necessary plugins-->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/pace-progress/pace.min.js"></script>
+    <script src="node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <script src="node_modules/@coreui/coreui/dist/js/coreui.min.js"></script>
+  </body>
+</html>

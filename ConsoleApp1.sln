@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.645
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{FE970FCD-2AF0-4C53-8AED-DD82CBD18E3D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Parma.Gasps.XPlat.Firebird", "..\..\Documents\sources\csharp\work\parm\gasps\src\Parma.Gasps.XPlat.Firebird\Parma.Gasps.XPlat.Firebird.csproj", "{2EBF0FCB-BD4D-4191-B968-8AA547300B5C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE970FCD-2AF0-4C53-8AED-DD82CBD18E3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE970FCD-2AF0-4C53-8AED-DD82CBD18E3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE970FCD-2AF0-4C53-8AED-DD82CBD18E3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE970FCD-2AF0-4C53-8AED-DD82CBD18E3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EBF0FCB-BD4D-4191-B968-8AA547300B5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EBF0FCB-BD4D-4191-B968-8AA547300B5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EBF0FCB-BD4D-4191-B968-8AA547300B5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EBF0FCB-BD4D-4191-B968-8AA547300B5C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F23D7117-6CE3-4FDB-AD6B-D96446688E19}
+	EndGlobalSection
+EndGlobal

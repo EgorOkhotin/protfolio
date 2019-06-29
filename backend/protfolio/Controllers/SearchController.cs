@@ -11,25 +11,25 @@ namespace protfolio.Controllers
         [HttpGet]
         public IActionResult ProjectSearch()
         {
-            return View();
+            return View("ProjectSearch");
         }
 
         [HttpPost]
         public IActionResult ProjectSearch(object some)
         {
-            throw new NotImplementedException();
+            return View("ProjectSearch");
         }
 
         [HttpGet]
         public IActionResult ProfileSearch()
         {
-            throw new NotImplementedException();
+            return View("ProfileSearch");
         }
 
         [HttpPost]
         public IActionResult ProfileSeacrh()
         {
-            throw new NotImplementedException();
+            return View("ProfileSearch");
         }
     }
 }

@@ -22,7 +22,7 @@ namespace protfolio.Controllers
             if (User.Identity.IsAuthenticated)
                 return RedirectToAction("Profile");
 
-            ViewBag.IsWorng = false as bool?;
+            ViewBag.IsWrong = false as bool?;
             return View("Login");
 
         }
@@ -40,8 +40,8 @@ namespace protfolio.Controllers
                 return View("Login");
             }
 
-            
-            //add set identity
+
+            HttpContext.User.AddIdentity(res);
             return RedirectToPage("Profile");
         }
 
@@ -64,8 +64,8 @@ namespace protfolio.Controllers
                 ViewBag.IsWorng = true as bool?;
                 return View("Register");
             }
-            
-            //add set indetity
+
+            HttpContext.User.AddIdentity(result);
             return RedirectToPage("Profile");
         }
     }

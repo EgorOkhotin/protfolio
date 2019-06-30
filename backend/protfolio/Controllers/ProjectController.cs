@@ -17,6 +17,13 @@ namespace protfolio.Controllers
         {
             _projects = proj;
         }
+
+        [HttpGet]
+        public IActionResult Project()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult CreateProject()
         {

@@ -61,6 +61,23 @@ namespace protfolio.Controllers
             return false;
         }
 
+        private async Task<ProjectEditModel> GetProjects(int id)
+        {
+            var p = _projects.GetAll().FirstOrDefault(x => x.Id == id);
+            var list = new List<(Project, Participant[], NeedMembers[])>();
+            var participants = (await _projects.FindParticipants(p)).ToArray();
+            var needMembers = (_projects.GetAllNeedMembers().Where(x => x.ProjectId == p.Id)
+                .Include(x => x.Sphere)
+                .Include(x => x.Specialization)).Select(x => x);
+            var res = new ProjectEditModel()
+            {
+                Project = p,
+                Participants = participants,
+                NeedMembers = needMembers.ToArray(),
+            };
+            return res;
+        }
+
 
     }
 }

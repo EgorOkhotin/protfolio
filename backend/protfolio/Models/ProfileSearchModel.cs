@@ -13,8 +13,8 @@ namespace protfolio.Models
         public string[] ProfSkills { get; set; }
         public int? ReadyToWork { get; set; }
 
-        public IEnumerable<User> Users { get; set; }
+        public IEnumerable<(User, UserSpecializations, Profskills[])> Users { get; set; }
 
-        public IEnumerable<UserSpecializations> Specializations { get; set; }
+        public IEnumerable<SphereSpecializations> SphereSpecializations { get; set; }
     }
 }

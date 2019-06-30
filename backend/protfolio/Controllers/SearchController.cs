@@ -7,6 +7,7 @@ using protfolio.Models;
 using protfolio.Services;
 using protfolio.Data.Repos;
 using Microsoft.EntityFrameworkCore;
+using protfolio.Data;
 
 namespace protfolio.Controllers
 {
@@ -14,10 +15,12 @@ namespace protfolio.Controllers
     {
         SearchService _search;
         UserRepository _users;
-        public SearchController(SearchService search, UserRepository users)
+        SpheresRepository _spheres;
+        public SearchController(SearchService search, UserRepository users, SpheresRepository sp)
         {
             _search = search;
             _users = users;
+            _spheres = sp;
         }
         [HttpGet]
         public async Task<IActionResult> ProjectSearch()
@@ -54,12 +57,19 @@ namespace protfolio.Controllers
         private async Task<ProfileSearchModel> GetProfile(ProfileSearchModel model)
         {
             var result = await _search.FindUser(model);
-            var specs = _users.GetAllUserSpecializations().Join(result, x => x.UserId, y => y.Id, (x, y) => x)
-                .Include(x => x.User)
+
+            var list = new List<(User, UserSpecializations, Profskills[])>();
+
+            foreach(var u in result)
+            {
+                var spec = _users.GetAllUserSpecializations().FirstOrDefault(x => x.UserId == u.Id);
+                var profSkills = _users.GetAllProfskills().Where(x => x.UserId == u.Id).ToArray();
+                list.Add((u, spec, profSkills));
+            }
+            model.Users = list;
+            model.SphereSpecializations = _spheres.GetAllSpecs().Include(x => x.Specialization)
                 .Include(x => x.Sphere)
-                .Include(x => x.Specialization);
-            model.Users = result.AsEnumerable();
-            model.Specializations = specs;
+                .AsEnumerable();
             return model;
         }
     }

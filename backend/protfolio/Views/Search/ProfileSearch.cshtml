@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Пользователи";
 }
+@using protfolio.Data
 @model ProfileSearchModel
 
 <div class="col-md-6">
@@ -18,20 +19,20 @@
           </tr>
         </thead>
         <tbody>
-          @foreach (var user in Model.ProfSkills)
+          @foreach (var (user, userSpecializations, profskills) in Model.Users)
           {
             <tr>
               <td class="text-center">
                 <div class="avatar">
-                  <img class="img-avatar" src="img/avatars/1.jpg">
+                  <img class="img-avatar" src="@user.Image">
                   <!--span class="avatar-status badge-success"></span-->
                 </div>
               </td>
               <td>
-                <div style="font-weight: bold;"><a href="#">Yiorgos Avraamu</a></div>
+                <div style="font-weight: bold;"><a asp-controller="Profile" asp-action="Profile" asp-route-id="@user.Id">@user.FirstName @user.SecondName</a></div>
                 <div class="small text-muted">
-                  <div>Data Scientist</div>
-                  <div>python • pandas</div>
+                  <div>@userSpecializations.Sphere.Name > @userSpecializations.Specialization.Name</div>
+                  <div>@{String.Join(" • ", profskills.Select(x => x.Name))}</div>
                 </div>
               </td>
             </tr>
@@ -45,31 +46,30 @@
   <div class="card">
     <div class="card-header">Фильтры</div>
     <fieldset class="card-body">
-      <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+      <form class="form-horizontal" method="post">
         <fieldset class="form-group">
           <label>Специализация</label>
           <div class="col-md-12">
-            <select class="form-control" id="select1" name="Специализация">
+            <select class="form-control" id="select1" name="SpecializationId">
               <option value="0">Please select
               </option>
-              <option value="1">IT > Backend
-              </option>
-              <option value="2">IT > Frontend
-              </option>
-              <option value="3">IT > Менеджмент
-              </option>
+              @foreach (var ss in Model.SphereSpecializations)
+              {
+                <option value="@ss.Specialization.Id">@ss.Sphere.Name > @ss.Specialization.Name
+                </option>
+              }
             </select>
           </div>
         </fieldset>
         <fieldset class="form-group">
           <label>Профессиональные навыки</label>
           <div class="col-md-12 ">
-            <input class="form-control" type="text" name="skills" />
+            <input class="form-control" type="text" name="ProfSkills" />
           </div>
         </fieldset>
         <div class="form-group row">
           <div class="col-md-12">
-            <button type="button" class="btn btn-primary"> Найти
+            <button type="submit" class="btn btn-primary"> Найти
             </button>
           </div>
         </div>

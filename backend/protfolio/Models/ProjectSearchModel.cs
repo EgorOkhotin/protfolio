@@ -14,7 +14,7 @@ namespace protfolio.Models
         public int? SpecializationId { get; set; }
         public string[] Tags { get; set; }
 
-        public IEnumerable<Project> Projects { get; set; }
+        public IEnumerable<(Project, Participant[], NeedMembers[])> Projects { get; set; }
 
         public bool IsEmpty()
         {

@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using protfolio.Models;
 using protfolio.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace protfolio.Controllers
 {
@@ -20,7 +23,7 @@ namespace protfolio.Controllers
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
-                return RedirectToAction("Profile");
+                return Redirect("/Profile/Profile");
 
             ViewBag.IsWrong = false as bool?;
             return View("Login");
@@ -40,9 +43,9 @@ namespace protfolio.Controllers
                 return View("Login");
             }
 
-
-            HttpContext.User.AddIdentity(res);
-            return RedirectToPage("Profile");
+            var identity = new ClaimsIdentity(res.Claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync("CookieAuthenticationDefaults.AuthenticationScheme", new ClaimsPrincipal(identity));
+            return RedirectToPage("/Profile/Profile");
         }
 
         [HttpGet]
@@ -64,9 +67,9 @@ namespace protfolio.Controllers
                 ViewBag.IsWorng = true as bool?;
                 return View("Register");
             }
-
-            HttpContext.User.AddIdentity(result);
-            return RedirectToPage("Profile");
+            var identity = new ClaimsIdentity(result.Claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync("CookieAuthenticationDefaults.AuthenticationScheme", new ClaimsPrincipal(identity));
+            return RedirectToPage("/Profile/Profile");
         }
     }
 }

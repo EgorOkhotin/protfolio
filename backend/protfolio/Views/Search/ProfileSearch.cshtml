@@ -31,8 +31,24 @@
               <td>
                 <div style="font-weight: bold;"><a asp-controller="Profile" asp-action="Profile" asp-route-id="@user.Id">@user.FirstName @user.SecondName</a></div>
                 <div class="small text-muted">
-                  <div>@userSpecializations.Sphere.Name > @userSpecializations.Specialization.Name</div>
-                  <div>@{String.Join(" • ", profskills.Select(x => x.Name))}</div>
+                  <div>
+                      @if (userSpecializations.Sphere != null)
+                      {
+                          <span>@userSpecializations.Sphere.Name</span> 
+                      } else
+                      {
+                          <span>"Нет сферы"</span>;
+                      }
+                    >
+                            @if (userSpecializations.Specialization != null)
+                            {
+                          <span>@userSpecializations.Specialization.Name</span>
+                            }
+                            else
+                            {
+                                <span>"Нет специализации"</span>
+                            }</div>
+                  <div>@{String.Join(" • ", profskills.Select(x => x.Name));}</div>
                 </div>
               </td>
             </tr>

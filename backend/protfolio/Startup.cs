@@ -15,6 +15,10 @@ using protfolio.Data;
 using protfolio.Services;
 using protfolio.Data.Repos;
 using protfolio.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.Net.Http;
+using Microsoft.AspNetCore.Http;
 
 namespace protfolio
 {
@@ -32,6 +36,8 @@ namespace protfolio
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
             services.AddDbContext<ApplicationContext>();
 
             services.AddTransient<IUserContext, ApplicationContext>();
@@ -41,6 +47,7 @@ namespace protfolio
             services.AddTransient<ProjectRepository>();
             services.AddTransient<UserRepository>();
             services.AddTransient<SpheresRepository>();
+            services.AddTransient<SearchService>();
 
 
         }
@@ -60,8 +67,14 @@ namespace protfolio
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            var cookiePolicyOptions = new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Strict,
+            };
             app.UseAuthentication();
-
+            app.UseCookiePolicy(cookiePolicyOptions);
+            //app.UseIdentity();
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -80,24 +93,90 @@ namespace protfolio
 
             for(int i=0;i<10; i++)
             {
-                var model = new RegisterModel()
-                {
-                    FirstName = $"FIRST_NAME_{i}",
-                    SecondName = $"SECOND_NAME_{i}",
-                    Email = $"EMAIL{i}@sm.com",
-                    Password = $"somePass{i}"
-                };
-                users.Add(model);
             }
 
             using (var serv = app.ApplicationServices.CreateScope())
             {
                 var prov = serv.ServiceProvider;
                 var auth = prov.GetRequiredService<AuthenticateService>();
-                foreach (var u in users)
+                var context = prov.GetRequiredService<ApplicationContext>();
+
+                var c = context.Contacts.Add(new Contact()
                 {
-                    auth.Registrate(u).Wait();
-                }
+                    Name = "Телефон"
+                }).Entity;
+                context.Users.Add(new User()
+                {
+                    Description = "Студент 5 курса Самарского университета, кафедра наноинженерии. Участник олимпиады Молодой специалист. Участник студвестны 2019. Староста группы. Председатель студенческого профсоюза. ",
+                    FirstName = "Кирилл",
+
+                    SecondName = "Иванов",
+
+                    Email = "kirill-ivanov@sm.com",
+
+                    BirthDate = new DateTime(1998, 3, 12),
+
+                    Gender = Gender.Male,
+                    Password = new byte[64],
+                    Salt = new byte[64],
+                    RegisterDate = DateTime.Now,
+                });
+
+                context.Add(new User()
+                {
+                    FirstName = "Роман",
+
+                    SecondName = "Димитров",
+
+                    Email = "dimitrov@sm.com",
+
+                    Password = new byte[64],
+                    Salt = new byte[64],
+
+                    BirthDate = new DateTime(1999, 01, 11),
+
+                    Gender = Gender.Male,
+
+                    Description = "Студент 3 курса Самарского университета, факультет государственного и муниципального управления. Стипендиат программы Правительства Самарской области. "
+                });
+
+                context.Add(new User()
+                {
+                    FirstName = "Ольга",
+
+                    SecondName = "Петрова",
+
+                    Email = "petrova-olga@sm.com",
+
+                    Password = new byte[64],
+                    Salt = new byte[64],
+
+                    BirthDate = new DateTime(1996, 6, 15),
+
+                    Gender = Gender.Female,
+
+                    Description = "Выпускник Самарского экономического университета,специальность - Экология и природопользование.Все свое свободное время я посвящаю любимому хобби - рисованию. "
+                });
+
+                context.Add(new User()
+                {
+                    FirstName = "Константин",
+
+                    SecondName = "Григорьев",
+
+                    Email = "grigoriev-ks@sm.com",
+
+                    Password = new byte[64],
+                    Salt = new byte[64],
+
+                    BirthDate = new DateTime(1994, 7, 3),
+
+                    Gender = Gender.Female,
+
+                    Description = "Магистр по специальности информационная безопасность Самарского университета. Участник Летней школы Информационных технологий МФТО."
+                });
+
+
             }
         }
 
@@ -196,5 +275,7 @@ namespace protfolio
                 context.SaveChanges();
             }
         }
+
+        
     }
 }

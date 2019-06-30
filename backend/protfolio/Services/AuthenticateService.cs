@@ -23,7 +23,7 @@ namespace protfolio.Services
 
         public async Task<ClaimsIdentity> Authentificate(string email, string password)
         {
-            var user = await FindUser(email);
+            var user = await FindUser(email.ToUpper());
             if (user == null)
                 return null;
 

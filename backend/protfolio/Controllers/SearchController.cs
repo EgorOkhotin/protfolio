@@ -16,29 +16,30 @@ namespace protfolio.Controllers
         SearchService _search;
         UserRepository _users;
         SpheresRepository _spheres;
-        public SearchController(SearchService search, UserRepository users, SpheresRepository sp)
+        ProjectRepository _proj;
+        
+        public SearchController(SearchService search, UserRepository users, SpheresRepository sp,
+            ProjectRepository proj)
         {
             _search = search;
             _users = users;
             _spheres = sp;
+            _proj = proj;
         }
         [HttpGet]
         public async Task<IActionResult> ProjectSearch()
         {
-            var res = new ProjectSearchModel()
-            {
-                Projects = (await _search.FindProjects(null)).AsEnumerable()
-            };
+            var res = GetProjects();
             return View("ProjectSearch", res);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> ProjectSearch(ProjectSearchModel some)
-        {
-            var result = await _search.FindProjects(some);
-            some.Projects = result.AsEnumerable();
-            return View("ProjectSearch", some);
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> ProjectSearch(ProjectSearchModel some)
+        //{
+        //    var result = await _search.FindProjects(some);
+        //    some.Projects = result.AsEnumerable();
+        //    return View("ProjectSearch", some);
+        //}
 
         [HttpGet]
         public async Task<IActionResult> ProfileSearch()
@@ -56,8 +57,9 @@ namespace protfolio.Controllers
 
         private async Task<ProfileSearchModel> GetProfile(ProfileSearchModel model)
         {
+            if (model == null) model = new ProfileSearchModel();
             var result = await _search.FindUser(model);
-
+            
             var list = new List<(User, UserSpecializations, Profskills[])>();
 
             foreach(var u in result)
@@ -67,10 +69,32 @@ namespace protfolio.Controllers
                 list.Add((u, spec, profSkills));
             }
             model.Users = list;
-            model.SphereSpecializations = _spheres.GetAllSpecs().Include(x => x.Specialization)
+            model.SphereSpecializations = _spheres.GetAllSpecs()
+                .Include(x => x.Specialization)
                 .Include(x => x.Sphere)
                 .AsEnumerable();
+            var r = model.SphereSpecializations.ToList();
             return model;
+        }
+
+        private async Task<List<(Project, Participant[], NeedMembers[])>> GetProjects()
+        {
+            var projects = _proj.GetAll();
+            var list = new List<(Project, Participant[], NeedMembers[])>();
+            foreach (var p in projects)
+            {
+                var participants = (await _proj.FindParticipants(p)).ToArray();
+                var needMembers = (_proj.GetAllNeedMembers().Where(x => x.ProjectId == p.Id)
+                    .Include(x => x.Sphere)
+                    .Include(x => x.Specialization)).Select(x=> x);
+                list.Add(
+                    (
+                    p,
+                    participants.ToArray(),
+                    needMembers.ToArray()
+                    ));
+            }
+            return list;
         }
     }
 }

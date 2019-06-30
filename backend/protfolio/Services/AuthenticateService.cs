@@ -42,7 +42,8 @@ namespace protfolio.Services
             byte[] salt = new byte[PASSWORD_LENGTH];
             (RandomNumberGenerator.Create()).GetBytes(salt);
             var passwordBytes = GetPasswordHash(salt, model.Password);
-
+            user.Password = passwordBytes;
+            user.Salt = salt;
             await _repo.AddUser(user);
             return GetIdentity(user);
         }

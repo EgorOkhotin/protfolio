@@ -10,24 +10,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace protfolio.Models
 {
-    [Authorize]
+    //[Authorize]
     public class ProfileController : Controller
     {
         UserRepository _users;
-        
+
         ProjectRepository _projects;
         public ProfileController(UserRepository users, ProjectRepository projects)
         {
             _users = users;
             _projects = projects;
         }
+
         [HttpGet]
-        public async Task<IActionResult> Profile()
+        public async Task<IActionResult> Profile(int? id)
         {
             var model = await GetProfileModel();
-
-            return View();
+            
+            return View(model);
         }
+
+        //[HttpGet]
+        //public async Task<IActionResult> Profile()
+        //{
+            
+        //}
         [HttpPost]
         public async Task<IActionResult> Profile(ProfileModel model)
         {
@@ -36,7 +43,8 @@ namespace protfolio.Models
 
             var userEmail = HttpContext.User.Identity.Name;
 
-            //what we can update???
+            var u = await _users.FindUser(x => x.Email == userEmail.Normalize());
+            await _users.UpdateUser(u);
 
             model = await GetProfileModel();
             return View(model);
@@ -46,7 +54,7 @@ namespace protfolio.Models
         {
             var userEmail = HttpContext.User.Identity.Name;
 
-            var user = await _users.FindUser(x => x.Email == userEmail);
+            var user = _users.GetAllUser().First();
             var participants = await _projects.FindUserParticipants(user);
             var skills = await _users.FindUserProfSkills(user);
             var contacts = await _users.FindUserContacts(user);
@@ -61,7 +69,8 @@ namespace protfolio.Models
                 User = user,
                 Participants = participants.ToArray(),
                 Profskills = skills.ToArray(),
-                Contacts = contacts.ToArray()
+                Contacts = contacts.ToArray(),
+                Specialization = userSpecialization
             };
             return model;
         }

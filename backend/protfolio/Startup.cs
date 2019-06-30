@@ -69,9 +69,9 @@ namespace protfolio
                     template: "{controller=Account}/{action=Login}/{id?}");
             });
 
-            RegistrateUsers(app);
-            AddSpheres(app);
-            AddSpecs(app);
+            //RegistrateUsers(app);
+            //AddSpheres(app);
+            //AddSpecs(app);
         }
 
         private void RegistrateUsers(IApplicationBuilder app)

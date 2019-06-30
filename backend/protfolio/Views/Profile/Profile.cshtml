@@ -12,7 +12,7 @@
       </div>
       <div class="card-body">
         <div>
-          <img style="display: block; margin: 0 auto;" class="img-avatar avatar-lg" src="@Model.User.ImageBase64" />
+          <img style="display: block; margin: 0 auto;" class="img-avatar avatar-lg" src="@Model.User.Image" />
         </div>
         <div style="text-align: center; font-weight: bold; margin-top: 10px;">
           @Model.User.FirstName @Model.User.SecondName
@@ -61,7 +61,7 @@
           Профессиональные навыки
         </div>
         <div class="card-body">
-          @{String.Join(" • ", Model.Profskills.Select(x => x.Name))}
+          @{String.Join(" • ", Model.Profskills.Select(x => x.Name));}
         </div>
       </div>
     </div>

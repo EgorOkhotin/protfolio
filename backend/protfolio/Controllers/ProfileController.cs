@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace protfolio.Models
 {
-    [Authorize]
+    //[Authorize]
     public class ProfileController : Controller
     {
         UserRepository _users;
@@ -19,14 +19,15 @@ namespace protfolio.Models
             _users = users;
             _projects = projects;
         }
+        [HttpGet]
         public async Task<IActionResult> Profile()
         {
-            var model = await GetProfileModel();
+            //var model = await GetProfileModel();
 
 
-            return View(model);
+            return View();
         }
-
+        [HttpPost]
         public async Task<IActionResult> Profile(ProfileModel model)
         {
             if (!ModelState.IsValid)

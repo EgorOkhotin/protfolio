@@ -14,7 +14,7 @@ namespace protfolio.Models
 
         public bool IsEmpty()
         {
-            return SphereIds == null &&
+            return SphereId == null &&
                 Name == null &&
                 SpecializationId == null &&
                 Tags == null;

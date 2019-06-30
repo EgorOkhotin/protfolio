@@ -3,33 +3,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using protfolio.Models;
+using protfolio.Services;
 
 namespace protfolio.Controllers
 {
     public class SearchController : Controller
     {
-        [HttpGet]
-        public IActionResult ProjectSearch()
+        SearchService _search;
+        public SearchController(SearchService search)
         {
-            return View("ProjectSearch");
+            _search = search;
+        }
+        [HttpGet]
+        public async Task<IActionResult> ProjectSearch()
+        {
+            var res = new ProjectSearchModel()
+            {
+                Projects = (await _search.FindProjects(null)).AsEnumerable()
+            };
+            return View("ProjectSearch", res);
         }
 
         [HttpPost]
-        public IActionResult ProjectSearch(object some)
+        public async Task<IActionResult> ProjectSearch(ProjectSearchModel some)
         {
-            return View("ProjectSearch");
+            var result = await _search.FindProjects(some);
+            some.Projects = result.AsEnumerable();
+            return View("ProjectSearch", some);
         }
 
         [HttpGet]
-        public IActionResult ProfileSearch()
+        public async Task<IActionResult> ProfileSearch()
         {
-            return View("ProfileSearch");
+            var res = await _search.FindUser(null);
+            var model = new ProfileSearchModel() { Users = res.AsEnumerable() };
+            return View("ProfileSearch", model);
         }
 
         [HttpPost]
-        public IActionResult ProfileSeacrh()
+        public async Task<IActionResult> ProfileSeacrh(ProfileSearchModel model)
         {
-            return View("ProfileSearch");
+            var result = await _search.FindUser(model);
+            model.Users = result.AsEnumerable();
+            return View("ProfileSearch", model);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using protfolio.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,5 +12,7 @@ namespace protfolio.Models
         public int? SpecializationId { get; set; }
         public string[] ProfSkills { get; set; }
         public int? ReadyToWork { get; set; }
+
+        public IEnumerable<User> Users { get; set; }
     }
 }

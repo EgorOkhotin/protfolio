@@ -27,6 +27,8 @@ namespace protfolio.Data
         public byte[] Password { get; set; }
         [Required]
         public byte[] Salt { get; set; }
+        public string ImageBase64 { get; set; }
+        public string Description { get; set; }
         public Gender Gender { get; set; }
 
     }

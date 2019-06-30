@@ -27,6 +27,21 @@ namespace protfolio.Data.Repos
             return await _context.Users.FirstOrDefaultAsync(predicate);
         }
 
+        public IQueryable<UserSpecializations> GetAllUserSpecializations()
+        {
+            return _context.UserSpecializations;
+        }
+
+        public IQueryable<Profskills> GetAllProfskills()
+        {
+            return _context.Profskills;
+        }
+
+        public IQueryable<User> GetAllUser()
+        {
+            return _context.Users;
+        }
+
         public async Task UpdateUser(User u)
         {
             _context.Users.Update(u);

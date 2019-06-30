@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace protfolio.Models
 {
@@ -13,6 +14,7 @@ namespace protfolio.Models
     public class ProfileController : Controller
     {
         UserRepository _users;
+        
         ProjectRepository _projects;
         public ProfileController(UserRepository users, ProjectRepository projects)
         {
@@ -49,6 +51,12 @@ namespace protfolio.Models
             var participants = await _projects.FindUserParticipants(user);
             var skills = await _users.FindUserProfSkills(user);
             var contacts = await _users.FindUserContacts(user);
+            var userSpecialization = _users.GetAllUserSpecializations()
+                .Where(x => x.UserId == user.Id)
+                .Include(x => x.Sphere)
+                .Include(x => x.Specialization)
+                .FirstOrDefault();
+
             var model = new ProfileModel()
             {
                 User = user,

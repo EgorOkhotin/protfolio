@@ -99,5 +99,10 @@ namespace protfolio.Data.Repos
         {
             return _context.NeedMembers;
         }
+
+        public IQueryable<ProjectTags> GetAllTags()
+        {
+            return _context.ProjectTags;
+        }
     }
 }

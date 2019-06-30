@@ -19,7 +19,7 @@ namespace protfolio.Controllers
         }
 
         [HttpGet]
-        public IActionResult Project()
+        public IActionResult Project(int? id)
         {
             return View();
         }

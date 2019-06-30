@@ -8,7 +8,10 @@ namespace protfolio.Data
     public class UserSpecializations
     {
         public User User { get; set; }
-        public int UserId { get; set; } 
+        public int UserId { get; set; }
+        
+        public int SphereId { get; set; }
+        public Sphere Sphere { get; set; }
 
         public Specialization Specialization { get; set; }
         public int SpecializationId { get; set; }

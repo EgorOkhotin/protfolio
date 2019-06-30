@@ -38,24 +38,26 @@ namespace protfolio.Services
 
         private async Task<IQueryable<Project>> FilterBySpheres(IQueryable<Project> projects, ProjectSearchModel model)
         {
-            if (model.SphereIds == null) return projects;
+            if (model.SphereId == null) return projects;
             if (projects.Count() == 0) return projects;
-            var projectSpheres = _projects.GetAllProjectsSpheres().Where(x => model.SphereIds.Contains(x.SphereId))
-                .Include(x => x.Project)
-                .Where(x => projects.Contains(x.Project))
-                .Select(x => x.ProjectId);
-            return projects.Where(x => projectSpheres.Contains(x.Id));
+
+            var projectJoin = _projects.GetAllProjectsSpheres()
+                .Where(x => x.SphereId == model.SphereId)
+                .Join(projects, x => x.ProjectId, p => p.Id, (p, x) => x);
+            return projectJoin;
         }
 
-        private async Task<IQueryable<Project>> FilterBySphereSpecializtionPairs(IQueryable<Project> projects, ProjectSearchModel model)
+        private async Task<IQueryable<Project>> FilterBySpecialization(IQueryable<Project> projects, ProjectSearchModel model)
         {
-            if (model.SphereSpecializtionPairs == null) return projects;
+            if (model.SphereId == null) return projects;
+            if (projects.Count() == 0) return projects;
 
-            var specs = model.GetSpecialization().Select(x => x.Value);
+            var projectJoin = _projects.GetAllNeedMembers()
+                .Where(x => x.SpecializationId == x.SpecializationId)
+                .Join(projects, x => x.ProjectId, y => y.Id, (x, y) => y);
 
-            // projects.Where
-            return null;
-
+            return projectJoin;
         }
+
     }
 }

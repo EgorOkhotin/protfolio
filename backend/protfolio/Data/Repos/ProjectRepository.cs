@@ -94,5 +94,10 @@ namespace protfolio.Data.Repos
         {
             return _context.ProjectTags.Where(x => x.ProjectId == p.Id).Select(x => x.Name);
         }
+
+        public IQueryable<NeedMembers> GetAllNeedMembers()
+        {
+            return _context.NeedMembers;
+        }
     }
 }

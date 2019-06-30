@@ -49,5 +49,10 @@ namespace protfolio.Data.Repos
 
             await _context.SaveChangesAsync();
         }
+
+        public IQueryable<Specialization> GetAlSpecializations()
+        {
+            return _context.Specializations;
+        }
     }
 }

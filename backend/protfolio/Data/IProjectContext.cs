@@ -12,5 +12,6 @@ namespace protfolio.Data
         DbSet<Participant> Participants { get; set; }
         DbSet<ProjectShperes> ProjectShperes { get; set; }
         DbSet<ProjectTags> ProjectTags { get; set; }
+        DbSet<NeedMembers> NeedMembers { get; set; }
     }
 }

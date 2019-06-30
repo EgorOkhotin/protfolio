@@ -2,6 +2,7 @@
 @{
   ViewData["Title"] = "Страница проекта";
 }
+@model ProjectEditModel
 
 <div class="col-md-6">
   <script>
@@ -13,14 +14,14 @@
     }
   </script>
   <div class="card">
-    <div class="card-header">                    <strong>Название проекта </strong>
+    <div class="card-header">                    <strong>@Model.Project.Name</strong>
       <span style="display: none;" class="badge badge-pill badge-secondary float-right plashka">Вы участник
       </span>
     </div>
     <div class="card-body">
       <p><strong>Описание:</strong>
       </p>
-      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+      <p>@Model.Project.Description
       </p>
     </div>
   </div>
@@ -32,35 +33,56 @@
         <div>
           <h4>Участники</h4>
         </div>
-        <div id="user_1">
-          <div style="font-weight: bold;"><a href="#">Имя пользователя</a></div>
-          <div style="font-weight: bold; margin-top: 8px;">Роль</div>
-          <div>kjasfkjnsadjf</div>
-          <div style="font-weight: bold; margin-top: 8px;">Обязанности</div>
-          <div>hkasdfkjsdnajkfkb</div>
-        </div>
-        <hr />
+        @foreach (var member in Model.Participants)
+        {
+          @if (member.User.Id == 1)
+           {
+             <div id="user_@member.User.Id" style="display: none">
+               <div style="font-weight: bold;"><a asp-controller="Profile" asp-action="Profile" asp-route-id="@member.User.Id">@member.User.FirstName @member.User.SecondName</a></div>
+               <div style="font-weight: bold; margin-top: 8px;">Роль</div>
+               <div>@member.Role</div>
+               <div style="font-weight: bold; margin-top: 8px;">Обязанности</div>
+               <div>@member.Description</div>
+             </div>
+           }
+           else
+           {
+             <div id="user_@member.User.Id">
+               <div style="font-weight: bold;"><a asp-controller="Profile" asp-action="Profile" asp-route-id="@member.User.Id">@member.User.FirstName @member.User.SecondName</a></div>
+               <div style="font-weight: bold; margin-top: 8px;">Роль</div>
+               <div>@member.Role</div>
+               <div style="font-weight: bold; margin-top: 8px;">Обязанности</div>
+               <div>@member.Description</div>
+             </div>
+           }
+          <hr/>
+        }
       </div>
       <div>
         <div>
           <h4>Нужны в команду</h4>
         </div>
-        <div id="need_1">
-          <div style="font-weight: bold;">
-            Роль
-            <div style="float: right;"><button onclick="joinProject()" type="button" class="btn btn-primary join-button"> Присоединиться</button></div>
+        @{int i = 0;}
+        @foreach (var need in Model.NeedMembers)
+        {
+          <div id="need_@i">
+            <div style="font-weight: bold;">
+              @need.Name
+              <div style="float: right;"><button onclick="joinProject()" type="button" class="btn btn-primary join-button"> Присоединиться</button></div>
+            </div>
+            <div style="font-style: italic; margin-top: 8px;">@need.Sphere.Name > @need.Specialization.Name</div>
+            <div style="font-weight: bold; margin-top: 8px;">Обязанности</div>
+            <div>@need.Description</div>
           </div>
-          <div style="font-style: italic; margin-top: 8px;">IT > Backend</div>
-          <div style="font-weight: bold; margin-top: 8px;">Обязанности</div>
-          <div>jnasjdfnkjasbdjkfbasdkjbf</div>
-        </div>
-        <hr />
+          <hr/>
+          i++;
+        }
       </div>
     </div>
   </div>
   <div class="card">
     <div class="card-body">
-      <a href="" target="_blank">Ссылка на сайт проекта</a>
+      <a href="#" target="_blank">Сайт проекта</a>
     </div>
   </div>
 </div>
@@ -69,8 +91,9 @@
     <div class="card-header"><strong>Теги</strong>
     </div>
     <div class="card-body">
-      <span class="badge badge-pill badge-info">Data Science
-      </span>
+      <span class="badge badge-pill badge-info">Data Science</span>
+      <span class="badge badge-pill badge-warning">Medical</span>
+      <span class="badge badge-pill badge-success">Highload</span>
     </div>
   </div>
 </div>

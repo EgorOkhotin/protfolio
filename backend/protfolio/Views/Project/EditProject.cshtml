@@ -3,74 +3,90 @@
     ViewData["Title"] = "Редактирование проекта";
 }
 
-<div class="container-fluid">
-  <div class="animated fadeIn"></div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-header">
-          <strong>Создание/редактирование проекта</strong>
+<div class="col-md-9">
+  <div class="card">
+    <div class="card-header">
+      <strong>Создание проекта</strong>
+    </div>
+    <div class="card-body">
+      <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input">Название</label>
+          <div class="col-md-9">
+            <input class="form-control" id="name" type="text" name="text-input">
+          </div>
         </div>
-        <div class="card-body">
-          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="text-input">Название</label>
-              <div class="col-md-9">
-                <input class="form-control" id="name" type="text" name="text-input">                        
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="textarea-input">О проекте</label>
-              <div class="col-md-9">
-                <textarea class="form-control" id="textarea-input" name="textarea-input" rows="9" placeholder="Описание проекта"></textarea>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-9">
-                <strong>Команда:</strong>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                  Добавить участника
-                </button>
-              </div>
-            </div>
-            <div class="form-group row">
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="textarea-input">О проекте</label>
+          <div class="col-md-9">
+            <textarea class="form-control" id="textarea-input" name="textarea-input" rows="9" placeholder="Описание проекта"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-12">
+            <strong>Команда</strong>
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">
+            Пригласить в команду
+            </button>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-12">
+            <div class="row">
               <label class="col-md-3 col-form-label" for="text-input">Ссылки</label>
               <div class="col-md-5">
-                <input class="form-control" id="name" type="text" name="text-input" placeholder="Ссылка">                        
+                <input class="form-control" id="name" type="text" name="text-input" placeholder="Ссылка">
               </div>
               <div class="col-md-4">
-                <input class="form-control" id="name" type="text" name="text-input" placeholder="Название">                        
+                <input class="form-control" id="name" type="text" name="text-input" placeholder="Название">
               </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="text-input">Теги</label>
-              <div class="col-md-9">
-                <input class="form-control" id="name" type="text" name="text-input">                        
+              <div>
               </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-md-3 col-form-label" for="text-input">Сферы</label>
-              <div class="col-md-9">
-                <input class="form-control" id="name" type="text" name="text-input">                        
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-9">
-                <strong>Нужны в команду</strong>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
-                  Добавить соискателя
+              <div class="col-md-12" style="margin-top: 14px;">
+                <button type="button" class="btn btn-primary float-right">
+                <i class="fa fa-plus"></i>
                 </button>
               </div>
             </div>
-          </form>
+          </div>
         </div>
-        <div class="card-footer">
-          <button class="btn btn-sm btn-primary" type="submit">
-            <i class="fa fa-dot-circle-o"></i> Сохранить</button>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input">Теги</label>
+          <div class="col-md-9">
+            <input class="form-control" id="name" type="text" name="text-input">
+          </div>
         </div>
-      </div>
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input">Сферы</label>
+          <div class="col-md-9">
+            <select class="form-control" id="select1" name="Сфера">
+              <option value="0">Please select
+              </option>
+              <option value="1">IT
+              </option>
+              <option value="2">Дизайн
+              </option>
+              <option value="3">Маркетинг
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-12">
+            <strong>Нужны в команду</strong>
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal2">
+            Добавить соискателя
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-sm btn-primary" type="submit">
+      <i class="fa fa-dot-circle-o"></i> Создать</button>
     </div>
   </div>
+</div>
 </div>
 
 <!-- Modal -->

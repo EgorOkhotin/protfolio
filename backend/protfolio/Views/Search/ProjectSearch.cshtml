@@ -4,126 +4,107 @@
 }
 @model ProjectSearchModel
 
-<div class="container-fluid">
-  <div class="animated fadeIn">                    
+<div class="col-md-6">
+  <div class="card">
+    <div class="card-header" style="font-weight: bold;">
+      <a href="#">Название проекта</a> <span class="badge badge-success float-right">Status</span>
+    </div>
+    <div class="card-body">
+      <div style="font-weight: bold;">
+        <h4>Описание</h4>
+      </div>
+      <div>askdfbsadbfhaskdbf</div>
+      <div style="font-weight: bold; margin-top: 8px;">
+        <h4>Участники</h4>
+      </div>
+      <div>
+        <div>
+          <div style="font-weight: bold;"><a href="#">Имя пользователя</a></div>
+          <div style="font-weight: bold; margin-top: 8px;">Роль</div>
+          <div>kjasfkjnsadjf</div>
+          <div style="font-weight: bold; margin-top: 8px;">Обязанности</div>
+          <div>hkasdfkjsdnajkfkb</div>
+        </div>
+        <hr />
+      </div>
+      <div style="font-weight: bold; margin-top: 8px;">
+        <h4>Нужны в команду</h4>
+      </div>
+      <div>
+        <div>
+          <div style="font-weight: bold;">
+            Роль
+            <div style="float: right;"><button type="button" class="btn btn-primary"> Присоединиться</button></div>
+          </div>
+          <div style="font-style: italic; margin-top: 8px;">IT > Backend</div>
+          <div style="font-weight: bold; margin-top: 8px;">Обязанности</div>
+          <div>jnasjdfnkjasbdjkfbasdkjbf</div>
+        </div>
+        <hr />
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <div class="col-md-8">
-      <div class="row">
-        <div class="col-sm-6 col-md-4">
-          <div class="card">
-            <div class="card-header"> Рейтинг                                          
-              <span class="badge badge-pill badge-danger float-right">5                                         
-              </span>                                    
-            </div>
-            <div class="card-body">
-              <p>Название проекта                                                                              
-              </p>
-            </div>
-            <div class="card-footer">
-              <p>Владелец                                                                              
-              </p>
-              <p>Участники                                                                              
-              </p>
-              <p>Требуются участники                                                                              
-              </p>
-            </div>
+</div>
+<div class="col-md-3">
+  <div class="card">
+    <div class="card-header">Фильтры</div>
+    <fieldset class="card-body">
+      <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+        <fieldset class="form-group">
+          <label>Название</label>
+          <div class="col-md-12 ">
+            <input class="form-control" type="text" name="name" />
+          </div>
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Сфера</label>
+          <div class="col-md-12">
+            <select class="form-control" id="select1" name="Сфера">
+              <option value="0">Please select
+              </option>
+              <option value="1">IT
+              </option>
+              <option value="2">Дизайн
+              </option>
+              <option value="3">Маркетинг
+              </option>
+            </select>
+          </div>
+        </fieldset>
+        <fieldset class="form-group">
+          <label>В поисках участников</label>
+          <div class="col-md-12">
+            <select class="form-control" id="jkskdf" name="Сфера">
+              <option value="0">Please select
+              </option>
+              <option value="1">IT > Backend
+              </option>
+              <option value="2">IT > Frontend
+              </option>
+              <option value="3">IT > Менеджмент
+              </option>
+              <option value="4">Дизайн > Иллюстрация
+              </option>
+              <option value="5">Дизайн > Фирменный стиль
+              </option>
+              <option value="6">Маркетинг > SMM
+              </option>
+            </select>
+          </div>
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Теги</label>
+          <div class="col-md-12 ">
+            <input class="form-control" type="text" name="tags" />
+          </div>
+        </fieldset>
+        <div class="form-group row">
+          <div class="col-md-12">
+            <button type="button" class="btn btn-primary"> Найти
+            </button>
           </div>
         </div>
-        <div class="col-sm-6 col-md-4">
-          <div class="card">
-            <div class="card-header"> Рейтинг                                          
-              <span class="badge badge-pill badge-danger float-right">5                                         
-              </span>                                    
-            </div>
-            <div class="card-body">
-              <p>Название проекта                                                                              
-              </p>
-            </div>
-            <div class="card-footer">
-              <p>Владелец                                                                              
-              </p>
-              <p>Участники                                                                              
-              </p>
-              <p>Требуются участники                                                                              
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-          <div class="card">
-            <div class="card-header"> Рейтинг                                          
-              <span class="badge badge-pill badge-danger float-right">5                                         
-              </span>                                    
-            </div>
-            <div class="card-body">
-              <p>Название проекта                                                                              
-              </p>
-            </div>
-            <div class="card-footer">
-              <p>Владелец                                                                              
-              </p>
-              <p>Участники                                                                              
-              </p>
-              <p>Требуются участники                                                                              
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-body">
-          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-            <div class="form-group row">
-              <div class="col-md-12">
-                <select class="form-control" id="select1" name="Сфера">
-                  <option value="0">Please select                                                                                                          
-                  </option>
-                  <option value="1">IT                                                                                                          
-                  </option>
-                  <option value="2">Option #2                                                                                                          
-                  </option>
-                  <option value="3">Option #3                                                                                                          
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-12">
-                <p>                                                                                                           
-                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Специальность                                                                                                          
-                  </button>                                                                                                    
-                </p>
-                <div class="collapse" id="collapseExample">
-                  <div class="form-check checkbox">                                                                                                                   
-                    <input class="form-check-input" id="check1" type="checkbox" value="">                                                                                                                   
-                    <label class="form-check-label" for="check1">Менеджмент                                                                                                                  
-                    </label>                                                                                                         
-                  </div>
-                  <div class="form-check checkbox">                                                                                                                   
-                    <input class="form-check-input" id="check2" type="checkbox" value="">                                                                                                                   
-                    <label class="form-check-label" for="check2">Front                                                                                                                  
-                    </label>                                                                                                         
-                  </div>
-                  <div class="form-check checkbox">                                                                                                                   
-                    <input class="form-check-input" id="check3" type="checkbox" value="">                                                                                                                   
-                    <label class="form-check-label" for="check3">Back                                                                                                                  
-                    </label>                                                                                                         
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-12">                                                                                                   
-                <button type="button" class="btn btn-primary"> Применить                                                                                                   
-                </button>                                                                                            
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+      </form>
+    </fieldset>
   </div>
 </div>

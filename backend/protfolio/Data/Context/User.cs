@@ -42,6 +42,7 @@ namespace protfolio.Data
 
     public enum Gender
     {
+        Undefined,
         Male,
         Female
     }

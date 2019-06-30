@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,9 +21,14 @@ namespace protfolio.Data.Repos
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IQueryable<Sphere>> FindSpheres()
+        public async Task<IQueryable<Sphere>> GetAllSpheres()
         {
             return _context.Spheres;
+        }
+
+        public async Task<IQueryable<Sphere>> FindSpheres(Expression<Func<Sphere, bool>> predicate)
+        {
+            return _context.Spheres.Where(predicate);
         }
 
         public async Task<IQueryable<Specialization>> FindSphereSpecializations(Sphere s)

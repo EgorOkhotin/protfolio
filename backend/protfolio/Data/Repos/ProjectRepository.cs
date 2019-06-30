@@ -15,6 +15,11 @@ namespace protfolio.Data.Repos
             _context = context;
         }
 
+        public IQueryable<Project> GetAll()
+        {
+            return _context.Projects;
+        }
+
         public async Task AddProject(Project p)
         {
             _context.Projects.Add(p);
@@ -30,6 +35,16 @@ namespace protfolio.Data.Repos
         public async Task<Project> FindProject(Expression<Func<Project, bool>> predicate)
         {
             return _context.Projects.FirstOrDefault(predicate);
+        }
+
+        public async Task<IQueryable<Participant>> FindUserParticipants(User u)
+        {
+            return _context.Participants.Where(x => x.UserId == u.Id).Include(x => x.Project); 
+        }
+
+        public IQueryable<ProjectShperes> GetAllProjectsSpheres()
+        {
+            return _context.ProjectShperes;
         }
 
         public async Task<IQueryable<Participant>> FindParticipants(Project p)

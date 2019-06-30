@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using protfolio.Data.Repos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace protfolio.Models
@@ -10,11 +12,51 @@ namespace protfolio.Models
     [Authorize]
     public class ProfileController : Controller
     {
-        public IActionResult Index()
+        UserRepository _users;
+        ProjectRepository _projects;
+        public ProfileController(UserRepository users, ProjectRepository projects)
         {
-            return View();
+            _users = users;
+            _projects = projects;
+        }
+        public async Task<IActionResult> Profile()
+        {
+            var model = await GetProfileModel();
+
+
+            return View(model);
         }
 
+        public async Task<IActionResult> Profile(ProfileModel model)
+        {
+            if (!ModelState.IsValid)
+                return View();
 
+            var userEmail = HttpContext.User.Identity.Name;
+
+            //what we can update???
+
+            model = await GetProfileModel();
+            return View(model);
+        }
+
+        private async Task<ProfileModel> GetProfileModel()
+        {
+            var userEmail = HttpContext.User.Identity.Name;
+
+            var user = await _users.FindUser(x => x.Email == userEmail);
+            var participants = await _projects.FindUserParticipants(user);
+            var skills = await _users.FindUserProfSkills(user);
+            var contacts = await _users.FindUserContacts(user);
+            var model = new ProfileModel()
+            {
+                User = user,
+                Participants = participants.ToArray(),
+                Profskills = skills.ToArray(),
+                Contacts = contacts.ToArray()
+            };
+            return model;
+        }
+        
     }
 }

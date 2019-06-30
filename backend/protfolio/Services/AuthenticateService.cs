@@ -52,7 +52,7 @@ namespace protfolio.Services
             var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.Name, user.FirstName, ClaimValueTypes.String),
+                    new Claim(ClaimTypes.Name, user.Email, ClaimValueTypes.String),
                 };
             ClaimsIdentity claimsIdentity =
             new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,

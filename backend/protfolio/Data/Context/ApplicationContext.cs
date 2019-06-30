@@ -28,6 +28,7 @@ namespace protfolio.Data
         public DbSet<Participant> Participants { get; set; }
         public DbSet<ProjectShperes> ProjectShperes { get; set; }
         public DbSet<ProjectTags> ProjectTags { get; set; }
+        public DbSet<NeedMembers> NeedMembers { get; set; }
 
         public DbSet<Sphere> Spheres { get; set; }
         public DbSet<Specialization> Specializations { get; set; }
@@ -53,6 +54,7 @@ namespace protfolio.Data
             modelBuilder.ApplyConfiguration(new SphereSpecializationsConfig());
             modelBuilder.ApplyConfiguration(new UserContactsConfig());
             modelBuilder.ApplyConfiguration(new UserSpecializationsConfig());
+            modelBuilder.ApplyConfiguration(new NeedMembersConfig());
             base.OnModelCreating(modelBuilder);
         }
 
@@ -99,6 +101,14 @@ namespace protfolio.Data
         public void Configure(EntityTypeBuilder<UserSpecializations> builder)
         {
             builder.HasKey(x => new { x.UserId, x.SpecializationId });
+        }
+    }
+
+    public class NeedMembersConfig : IEntityTypeConfiguration<NeedMembers>
+    {
+        public void Configure(EntityTypeBuilder<NeedMembers> builder)
+        {
+            builder.HasKey(x => new { x.ProjectId, x.SpecializationId });
         }
     }
 

@@ -9,7 +9,7 @@ namespace protfolio.Models
     public class LoginModel
     {
         [Required]
-        public string Emali { get; set; }
+        public string Email { get; set; }
         [Required]
         public string Password { get; set; }
     }

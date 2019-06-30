@@ -33,7 +33,7 @@ namespace protfolio.Controllers
             if (!ModelState.IsValid)
                 return View();
 
-            var res = await _auth.Authentificate(model.Emali, model.Password);
+            var res = await _auth.Authentificate(model.Email, model.Password);
             if (res == null)
             {
                 ViewBag.IsWrongLogin = true as bool?;

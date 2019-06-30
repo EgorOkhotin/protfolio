@@ -4,8 +4,18 @@
 }
 
 <div class="col-md-6">
+  <script>
+    function joinProject() {
+        $('.join-button').remove();
+        $('.plashka').css('display', 'block');
+        $('#user_1').css('display', 'block');
+        $('#need_1').remove();
+    }
+  </script>
   <div class="card">
-    <div class="card-header"><strong>Название проекта</strong>
+    <div class="card-header">                    <strong>Название проекта </strong>
+      <span style="display: none;" class="badge badge-pill badge-secondary float-right plashka">Вы участник
+      </span>
     </div>
     <div class="card-body">
       <p><strong>Описание:</strong>
@@ -22,7 +32,7 @@
         <div>
           <h4>Участники</h4>
         </div>
-        <div>
+        <div id="user_1">
           <div style="font-weight: bold;"><a href="#">Имя пользователя</a></div>
           <div style="font-weight: bold; margin-top: 8px;">Роль</div>
           <div>kjasfkjnsadjf</div>
@@ -35,10 +45,10 @@
         <div>
           <h4>Нужны в команду</h4>
         </div>
-        <div>
+        <div id="need_1">
           <div style="font-weight: bold;">
             Роль
-            <div style="float: right;"><button type="button" class="btn btn-primary"> Присоединиться</button></div>
+            <div style="float: right;"><button onclick="joinProject()" type="button" class="btn btn-primary join-button"> Присоединиться</button></div>
           </div>
           <div style="font-style: italic; margin-top: 8px;">IT > Backend</div>
           <div style="font-weight: bold; margin-top: 8px;">Обязанности</div>

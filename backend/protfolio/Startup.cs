@@ -14,7 +14,7 @@ using Microsoft.Extensions.Options;
 using protfolio.Data;
 using protfolio.Services;
 using protfolio.Data.Repos;
-
+using protfolio.Models;
 
 namespace protfolio
 {
@@ -68,6 +68,54 @@ namespace protfolio
                     name: "default",
                     template: "{controller=Account}/{action=Login}/{id?}");
             });
+
+            RegistrateUsers(app);
+        }
+
+        private void RegistrateUsers(IApplicationBuilder app)
+        {
+            var users = new List<RegisterModel>();
+
+            for(int i=0;i<10; i++)
+            {
+                var model = new RegisterModel()
+                {
+                    FirstName = $"FIRST_NAME_{i}",
+                    SecondName = $"SECOND_NAME_{i}",
+                    Email = $"EMAIL{i}@sm.com",
+                    Password = $"somePass{i}"
+                };
+                users.Add(model);
+            }
+
+            using (var serv = app.ApplicationServices.CreateScope())
+            {
+                var prov = serv.ServiceProvider;
+                var auth = prov.GetRequiredService<AuthenticateService>();
+                foreach (var u in users)
+                {
+                    auth.Registrate(u).Wait();
+                }
+            }
+        }
+
+        private void AddSpheres(IApplicationBuilder app)
+        {
+            var spheres = new List<Sphere>();
+
+            for(int i=0; i<3; i++)
+            {
+                spheres.Add(new Sphere()
+                {
+                    Name = $"SPHERE_{i}"
+                });
+            }
+
+            using (var serv = app.ApplicationServices.CreateScope())
+            {
+                var prov = serv.ServiceProvider;
+                var context = prov.GetRequiredService<ApplicationContext>();
+            }
         }
     }
 }

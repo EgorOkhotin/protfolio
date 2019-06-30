@@ -100,7 +100,7 @@ namespace protfolio.Data
     {
         public void Configure(EntityTypeBuilder<UserSpecializations> builder)
         {
-            builder.HasKey(x => new { x.UserId, x.SpecializationId });
+            builder.HasKey(x => new { x.UserId, x.SpecializationId, x.SphereId });
         }
     }
 

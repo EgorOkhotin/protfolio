@@ -11,6 +11,7 @@ namespace protfolio.Models
         public User User { get; set; }
 
         public Profskills[] Profskills { get; set; }
+        public UserSpecializations Specialization { get; set; }
         public Participant[] Participants { get; set; }
         public UserContacts[] Contacts { get; set; }
 

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace protfolio.Models
 {
-    //[Authorize]
+    [Authorize]
     public class ProfileController : Controller
     {
         UserRepository _users;
@@ -24,8 +24,7 @@ namespace protfolio.Models
         [HttpGet]
         public async Task<IActionResult> Profile()
         {
-            //var model = await GetProfileModel();
-
+            var model = await GetProfileModel();
 
             return View();
         }

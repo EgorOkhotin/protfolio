@@ -70,6 +70,8 @@ namespace protfolio
             });
 
             RegistrateUsers(app);
+            AddSpheres(app);
+            AddSpecs(app);
         }
 
         private void RegistrateUsers(IApplicationBuilder app)
@@ -115,6 +117,83 @@ namespace protfolio
             {
                 var prov = serv.ServiceProvider;
                 var context = prov.GetRequiredService<ApplicationContext>();
+                foreach(var s in spheres)
+                {
+                    context.Spheres.Add(s);
+                }
+                context.SaveChanges();
+            }
+        }
+
+        private void AddSpecs(IApplicationBuilder app)
+        {
+            var specs = new List<Specialization>();
+
+            for(int i=0; i<4; i++)
+            {
+                specs.Add(new Specialization()
+                {
+                    Name = $"SPEC_NAME_{i}"
+                });
+            }
+
+            using (var serv = app.ApplicationServices.CreateScope())
+            {
+                var prov = serv.ServiceProvider;
+                var context = prov.GetRequiredService<ApplicationContext>();
+                foreach (var s in specs)
+                {
+                    context.Specializations.Add(s);
+                }
+
+                context.SphereSpecializations.Add(new SphereSpecializations()
+                {
+                    SphereId = 1,
+                    SpecializationId = 1
+                });
+
+                context.SphereSpecializations.Add(new SphereSpecializations()
+                {
+                    SphereId = 1,
+                    SpecializationId = 2
+                });
+
+                context.SphereSpecializations.Add(new SphereSpecializations()
+                {
+                    SphereId = 1,
+                    SpecializationId = 3
+                });
+
+                context.SphereSpecializations.Add(new SphereSpecializations()
+                {
+                    SphereId = 2,
+                    SpecializationId = 1
+                });
+
+                context.SphereSpecializations.Add(new SphereSpecializations()
+                {
+                    SphereId = 2,
+                    SpecializationId = 2
+                });
+
+                context.SphereSpecializations.Add(new SphereSpecializations()
+                {
+                    SphereId = 3,
+                    SpecializationId = 3
+                });
+
+                var users = context.Users.ToList();
+                foreach(var u in users)
+                {
+                    context.UserSpecializations.Add(new UserSpecializations()
+                    {
+                        UserId = u.Id,
+                        SpecializationId = 1,
+                        SphereId = 1
+                    });
+                }
+
+                context.SaveChanges();
             }
         }
     }

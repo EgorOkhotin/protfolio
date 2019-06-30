@@ -54,5 +54,10 @@ namespace protfolio.Data.Repos
         {
             return _context.Specializations;
         }
+
+        public IQueryable<SphereSpecializations> GetAllSpecs()
+        {
+            return _context.SphereSpecializations;
+        }
     }
 }

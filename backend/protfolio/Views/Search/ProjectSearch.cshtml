@@ -1,31 +1,129 @@
 ﻿
 @{
-    ViewData["Title"] = "ProjectSearchView";
+    ViewData["Title"] = "Проекты";
 }
 @model ProjectSearchModel
 
-<div class="app-body">
-    <main class="main">
-
-        <div class="container-fluid">
-            <div class="animated fadeIn"></div>
-
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <strong>Профиль</strong>
-                        </div>
-                        <div class="card-body">
-
-
-                        </div>
-
-
-                    </div>
-                </div>
+<div class="container-fluid">
+  <div class="animated fadeIn">                    
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <div class="card-header"> Рейтинг                                          
+              <span class="badge badge-pill badge-danger float-right">5                                         
+              </span>                                    
             </div>
+            <div class="card-body">
+              <p>Название проекта                                                                              
+              </p>
+            </div>
+            <div class="card-footer">
+              <p>Владелец                                                                              
+              </p>
+              <p>Участники                                                                              
+              </p>
+              <p>Требуются участники                                                                              
+              </p>
+            </div>
+          </div>
         </div>
-    </main>
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <div class="card-header"> Рейтинг                                          
+              <span class="badge badge-pill badge-danger float-right">5                                         
+              </span>                                    
+            </div>
+            <div class="card-body">
+              <p>Название проекта                                                                              
+              </p>
+            </div>
+            <div class="card-footer">
+              <p>Владелец                                                                              
+              </p>
+              <p>Участники                                                                              
+              </p>
+              <p>Требуются участники                                                                              
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <div class="card">
+            <div class="card-header"> Рейтинг                                          
+              <span class="badge badge-pill badge-danger float-right">5                                         
+              </span>                                    
+            </div>
+            <div class="card-body">
+              <p>Название проекта                                                                              
+              </p>
+            </div>
+            <div class="card-footer">
+              <p>Владелец                                                                              
+              </p>
+              <p>Участники                                                                              
+              </p>
+              <p>Требуются участники                                                                              
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            <div class="form-group row">
+              <div class="col-md-12">
+                <select class="form-control" id="select1" name="Сфера">
+                  <option value="0">Please select                                                                                                          
+                  </option>
+                  <option value="1">IT                                                                                                          
+                  </option>
+                  <option value="2">Option #2                                                                                                          
+                  </option>
+                  <option value="3">Option #3                                                                                                          
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-12">
+                <p>                                                                                                           
+                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Специальность                                                                                                          
+                  </button>                                                                                                    
+                </p>
+                <div class="collapse" id="collapseExample">
+                  <div class="form-check checkbox">                                                                                                                   
+                    <input class="form-check-input" id="check1" type="checkbox" value="">                                                                                                                   
+                    <label class="form-check-label" for="check1">Менеджмент                                                                                                                  
+                    </label>                                                                                                         
+                  </div>
+                  <div class="form-check checkbox">                                                                                                                   
+                    <input class="form-check-input" id="check2" type="checkbox" value="">                                                                                                                   
+                    <label class="form-check-label" for="check2">Front                                                                                                                  
+                    </label>                                                                                                         
+                  </div>
+                  <div class="form-check checkbox">                                                                                                                   
+                    <input class="form-check-input" id="check3" type="checkbox" value="">                                                                                                                   
+                    <label class="form-check-label" for="check3">Back                                                                                                                  
+                    </label>                                                                                                         
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-12">                                                                                                   
+                <button type="button" class="btn btn-primary"> Применить                                                                                                   
+                </button>                                                                                            
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

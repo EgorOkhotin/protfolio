@@ -14,5 +14,7 @@ namespace protfolio.Models
         public int? ReadyToWork { get; set; }
 
         public IEnumerable<User> Users { get; set; }
+
+        public IEnumerable<UserSpecializations> Specializations { get; set; }
     }
 }

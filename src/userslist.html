@@ -50,7 +50,7 @@
                     <div class="animated fadeIn">
                     </div>
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body">
                                     <table class="table table-responsive-sm table-hover table-outline mb-0">
@@ -67,40 +67,13 @@
                                             <tr> 
                                                 <td class="text-center">
                                                     <div class="avatar"> 
-                                                        <img class="img-avatar" src="img/avatars/1.jpg" alt="admin@bootstrapmaster.com"> 
+                                                        <img class="img-avatar" src="img/avatars/1.jpg">
                                                         <!--span class="avatar-status badge-success"></span-->
                                                     </div></td> <td>
-                                                    <div>Yiorgos Avraamu
-                                                    </div>
+                                                    <div style="font-weight: bold;"><a href="#">Yiorgos Avraamu</a></div>
                                                     <div class="small text-muted"> 
-                                                        <span>Специальность
-                                                        </span> | Дата регистрации: Jan 1, 2015
-                                                    </div></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center">
-                                                    <div class="avatar"> 
-                                                        <img class="img-avatar" src="img/avatars/2.jpg" alt="admin@bootstrapmaster.com"> 
-                                                        <!--span class="avatar-status badge-success"></span-->
-                                                    </div></td> <td>
-                                                    <div>Yiorgos Avraamu
-                                                    </div>
-                                                    <div class="small text-muted"> 
-                                                        <span>Специальность
-                                                        </span> | Дата регистрации: Jan 1, 2015
-                                                    </div></td>
-                                            </tr>
-                                            <tr> 
-                                                <td class="text-center">
-                                                    <div class="avatar"> 
-                                                        <img class="img-avatar" src="img/avatars/3.jpg" alt="admin@bootstrapmaster.com"> 
-                                                        <!--span class="avatar-status badge-success"></span-->
-                                                    </div></td> <td>
-                                                    <div>Yiorgos Avraamu
-                                                    </div>
-                                                    <div class="small text-muted"> 
-                                                        <span>Специальность
-                                                        </span> | Дата регистрации: Jan 1, 2015
+                                                        <div>Data Scientist</div>
+                                                        <div>python • pandas</div>
                                                     </div></td>
                                             </tr>
                                         </tbody>
@@ -108,56 +81,40 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="card">
-                                <div class="card-body">
+                                <div class="card-header">Фильтры</div>
+                                <fieldset class="card-body">
                                     <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-                                        <div class="form-group row">
+                                        <fieldset class="form-group">
+                                            <label>Специализация</label>
                                             <div class="col-md-12"> 
-                                                <select class="form-control" id="select1" name="Сфера"> 
+                                                <select class="form-control" id="select1" name="Специализация">
                                                     <option value="0">Please select
                                                     </option> 
-                                                    <option value="1">IT
+                                                    <option value="1">IT > Backend
                                                     </option>
-                                                    <option value="2">Option #2
+                                                    <option value="2">IT > Frontend
                                                     </option> 
-                                                    <option value="3">Option #3
+                                                    <option value="3">IT > Менеджмент
                                                     </option>
                                                 </select>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-12"> 
-                                                <p> 
-                                                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Специальность
-                                                    </button>  
-                                                </p>
-                                                <div class="collapse" id="collapseExample">
-                                                    <div class="form-check checkbox"> 
-                                                        <input class="form-check-input" id="check1" type="checkbox" value=""> 
-                                                        <label class="form-check-label" for="check1">Менеджмент
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check checkbox"> 
-                                                        <input class="form-check-input" id="check2" type="checkbox" value=""> 
-                                                        <label class="form-check-label" for="check2">Front
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check checkbox"> 
-                                                        <input class="form-check-input" id="check3" type="checkbox" value=""> 
-                                                        <label class="form-check-label" for="check3">Back
-                                                        </label>
-                                                    </div>
-                                                </div>
+                                        </fieldset>
+                                        <fieldset class="form-group">
+                                            <label>Профессиональные навыки</label>
+                                            <div class="col-md-12 ">
+                                                <input class="form-control" type="text" name="skills" />
                                             </div>
-                                        </div>
+                                        </fieldset>
                                         <div class="form-group row">
                                             <div class="col-md-12"> 
-                                                <button type="button" class="btn btn-primary"> Применить 
+                                                <button type="button" class="btn btn-primary"> Найти
                                                 </button>  
                                             </div> 
                                         </div>
                                     </form>
+                                </fieldset>
                                 </div>
                             </div>
                         </div>

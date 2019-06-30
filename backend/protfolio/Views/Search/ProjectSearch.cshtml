@@ -5,45 +5,54 @@
 @model ProjectSearchModel
 
 <div class="col-md-6">
+  @foreach (var (project, participants, need) in Model.Projects) 
+  {
   <div class="card">
     <div class="card-header" style="font-weight: bold;">
-      <a href="#">Название проекта</a> <span class="badge badge-success float-right">Status</span>
+      <a asp-controller="Project" asp-action="Project" asp-route-id="@project.Id">@project.Name</a> <span class="badge badge-success float-right">@project.Status.ToString()</span>
     </div>
     <div class="card-body">
       <div style="font-weight: bold;">
         <h4>Описание</h4>
       </div>
-      <div>askdfbsadbfhaskdbf</div>
+      <div>@project.Description</div>
       <div style="font-weight: bold; margin-top: 8px;">
         <h4>Участники</h4>
       </div>
       <div>
-        <div>
-          <div style="font-weight: bold;"><a href="#">Имя пользователя</a></div>
-          <div style="font-weight: bold; margin-top: 8px;">Роль</div>
-          <div>kjasfkjnsadjf</div>
-          <div style="font-weight: bold; margin-top: 8px;">Обязанности</div>
-          <div>hkasdfkjsdnajkfkb</div>
-        </div>
-        <hr />
+        @foreach (var p in participants)
+        {
+          <div>
+            <div style="font-weight: bold;"><a asp-controller="Profile" asp-action="Profile" asp-route-id="@p.User.Id">@p.User.FirstName @p.User.SecondName</a></div>
+            <div style="font-weight: bold; margin-top: 8px;">Роль</div>
+            <div>@p.Role</div>
+            <div style="font-weight: bold; margin-top: 8px;">Обязанности</div>
+            <div>@p.Description</div>
+          </div>
+          <hr/>
+        }
       </div>
       <div style="font-weight: bold; margin-top: 8px;">
         <h4>Нужны в команду</h4>
       </div>
       <div>
-        <div>
-          <div style="font-weight: bold;">
-            Роль
-            <div style="float: right;"><button type="button" class="btn btn-primary"> Присоединиться</button></div>
+        @foreach (var n in need)
+        {
+          <div>
+            <div style="font-weight: bold;">
+              @n.Name
+              <div style="float: right;"><button type="button" class="btn btn-primary"> Присоединиться</button></div>
+            </div>
+            <div style="font-style: italic; margin-top: 8px;">@n.Sphere.Name > @n.Specialization.Name</div>
+            <div style="font-weight: bold; margin-top: 8px;">Обязанности</div>
+            <div>@n.Description</div>
           </div>
-          <div style="font-style: italic; margin-top: 8px;">IT > Backend</div>
-          <div style="font-weight: bold; margin-top: 8px;">Обязанности</div>
-          <div>jnasjdfnkjasbdjkfbasdkjbf</div>
-        </div>
-        <hr />
+          <hr/>
+        }
       </div>
     </div>
   </div>
+  }
 </div>
 <div class="col-md-3">
   <div class="card">

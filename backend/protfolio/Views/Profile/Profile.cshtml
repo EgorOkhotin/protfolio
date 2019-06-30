@@ -1,107 +1,91 @@
-﻿
+﻿@using System.Linq
 @{
-    ViewData["Title"] = "ProfileView";
+    ViewData["Title"] = "Профиль";
 }
-<div class="container-fluid">
-  <div class="animated fadeIn">
-  </div>
-  <div class="row">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header">                    <strong>Профиль</strong>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="">
-                <img class="img-avatar" src="img/avatars/1.jpg" alt="admin@bootstrapmaster.com">                                                          
-                <!--span class="avatar-status badge-success"></span-->                                                     
-              </div>
-              <p>Фамилия Имя   
-              </p>
-              <p>                                                    Специальность 
-              </p>
-              <p>Контакты
-              </p>
-            </div>
-            <div class="col-md-8">
-              <p><strong>Обо мне:</strong>
-              </p>
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-              </p>
-            </div>
-          </div>
-        </div>
+@model ProfileModel
+
+<div class="col-md-3">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        Профиль
       </div>
-      <div class="row">
-        <div class="col-sm-6 col-md-4">
-          <div class="card">
-            <div class="card-header">Проект
-            </div>
-            <div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-            </div>
-          </div>
+      <div class="card-body">
+        <div>
+          <img style="display: block; margin: 0 auto;" class="img-avatar avatar-lg" src="@Model.User.ImageBase64" />
         </div>
-        <div class="col-sm-6 col-md-4">
-          <div class="card">
-            <div class="card-header">Проект
-            </div>
-            <div class="card-body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-            </div>
+        <div style="text-align: center; font-weight: bold; margin-top: 10px;">
+          @Model.User.FirstName @Model.User.SecondName
+        </div>
+        <div style="text-align: center; font-style: italic;">
+          @Model.Specialization.Sphere.Name > @Model.Specialization.Specialization.Name
+        </div>
+        <div style="text-align: center;">
+          Дата рождения: @Model.User.BirthDate.ToString("dd/M/yyyy")
+        </div>
+        <hr />
+        <div>
+          <div style="font-weight: bold;">Активность</div>
+          <div>Регистрация: @Model.User.RegisterDate.ToString("dd/M/yyyy")</div>
+          <div>Последний визит: @Model.User.LastVisit.ToString("dd/M/yyyy")</div>
+        </div>
+        <hr />
+        <div>
+          <div style="font-weight: bold;">Контакты</div>
+          <div>
+            @foreach (var contact in Model.Contacts)
+                {<div>@contact.Contact.Name: @contact.Value</div>}
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
+  </div>
+</div>
+<div class="col-md-6">
+  <div class="row">
+    <div class="col-md-12">
       <div class="card">
+        <div class="card-header">
+          Обо мне
+        </div>
         <div class="card-body">
-          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-            <div class="form-group row">
-              <div class="col-md-12">
-                <select class="form-control" id="select1" name="Сфера">
-                  <option value="0">Please select                                                     
-                  </option>
-                  <option value="1">IT                                                     
-                  </option>
-                  <option value="2">Option #2                                                     
-                  </option>
-                  <option value="3">Option #3                                                     
-                  </option>
-                </select>
-              </div>
+          @Model.User.Description
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          Профессиональные навыки
+        </div>
+        <div class="card-body">
+          @{String.Join(" • ", Model.Profskills.Select(x => x.Name))}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          Участие в проектах
+        </div>
+        <div class="card-body">
+          @foreach (var p in Model.Participants)
+          {
+            <div>
+              <div style="font-weight: bold;"><a asp-controller="Project" asp-action="Project" asp-route-id="@p.Project.Id">@p.Project.Name</a> <span class="badge badge-success">@p.Project.Status.ToString()</span></div>
+              <div style="margin-top: 10px; font-weight: bold;">Описание</div>
+              <div>@p.Project.Description</div>
+              <div style="margin-top: 10px; font-weight: bold;">Роль</div>
+              <div>@p.Role</div>
+              <div style="margin-top: 10px; font-weight: bold;">Обязанности</div>
+              <div>@p.Description</div>
             </div>
-            <div class="form-group row">
-              <div class="col-md-12">
-                <p>                                                      
-                  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> Специальность                                                     
-                  </button>                                                   
-                </p>
-                <div class="collapse" id="collapseExample">
-                  <div class="form-check checkbox">                                                          
-                    <input class="form-check-input" id="check1" type="checkbox" value="">                                                          
-                    <label class="form-check-label" for="check1">Менеджмент                                                         
-                    </label>                                                    
-                  </div>
-                  <div class="form-check checkbox">                                                          
-                    <input class="form-check-input" id="check2" type="checkbox" value="">                                                          
-                    <label class="form-check-label" for="check2">Front                                                         
-                    </label>                                                    
-                  </div>
-                  <div class="form-check checkbox">                                                          
-                    <input class="form-check-input" id="check3" type="checkbox" value="">                                                          
-                    <label class="form-check-label" for="check3">Back                                                         
-                    </label>                                                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-md-12">                                                  
-                <button type="button" class="btn btn-primary"> Применить                                                  
-                </button>                                               
-              </div>
-            </div>
-          </form>
+            <hr />
+          }
         </div>
       </div>
     </div>
